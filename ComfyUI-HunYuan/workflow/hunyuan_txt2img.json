@@ -1,0 +1,358 @@
+{
+    "last_node_id": 7,
+    "last_link_id": 6,
+    "nodes": [
+      {
+        "id": 1,
+        "type": "DiffusersPipelineLoader",
+        "pos": [
+          2380,
+          93
+        ],
+        "size": {
+          "0": 315,
+          "1": 58
+        },
+        "flags": {
+          "pinned": true
+        },
+        "order": 0,
+        "mode": 0,
+        "outputs": [
+          {
+            "name": "PIPELINE",
+            "type": "PIPELINE",
+            "links": [
+              1
+            ],
+            "shape": 3,
+            "slot_index": 0
+          }
+        ],
+        "title": "选择模型",
+        "properties": {
+          "Node name for S&R": "DiffusersPipelineLoader"
+        },
+        "widgets_values": [
+          "ckpts"
+        ]
+      },
+      {
+        "id": 2,
+        "type": "DiffusersSchedulerLoader",
+        "pos": [
+          2378,
+          196
+        ],
+        "size": {
+          "0": 315,
+          "1": 58
+        },
+        "flags": {
+          "pinned": true
+        },
+        "order": 1,
+        "mode": 0,
+        "outputs": [
+          {
+            "name": "SCHEDULER",
+            "type": "SCHEDULER",
+            "links": [
+              2
+            ],
+            "shape": 3,
+            "slot_index": 0
+          }
+        ],
+        "title": "选择采样算法",
+        "properties": {
+          "Node name for S&R": "DiffusersSchedulerLoader"
+        },
+        "widgets_values": [
+          "ddim"
+        ]
+      },
+      {
+        "id": 3,
+        "type": "DiffusersModelMakeup",
+        "pos": [
+          2384,
+          304
+        ],
+        "size": {
+          "0": 304.79998779296875,
+          "1": 46
+        },
+        "flags": {
+          "collapsed": true,
+          "pinned": true
+        },
+        "order": 3,
+        "mode": 0,
+        "inputs": [
+          {
+            "name": "pipeline",
+            "type": "PIPELINE",
+            "link": 1
+          },
+          {
+            "name": "scheduler",
+            "type": "SCHEDULER",
+            "link": 2
+          }
+        ],
+        "outputs": [
+          {
+            "name": "MAKED_PIPELINE",
+            "type": "MAKED_PIPELINE",
+            "links": [
+              3
+            ],
+            "shape": 3,
+            "slot_index": 0
+          }
+        ],
+        "properties": {
+          "Node name for S&R": "DiffusersModelMakeup"
+        }
+      },
+      {
+        "id": 4,
+        "type": "DiffusersClipTextEncode",
+        "pos": [
+          2374.6631305801384,
+          414.4679517339942
+        ],
+        "size": [
+          323.2630861432949,
+          213.47556176285366
+        ],
+        "flags": {
+          "pinned": true
+        },
+        "order": 2,
+        "mode": 0,
+        "outputs": [
+          {
+            "name": "positive",
+            "type": "STRINGC",
+            "links": [
+              4
+            ],
+            "shape": 3,
+            "slot_index": 0
+          },
+          {
+            "name": "negative",
+            "type": "STRINGC",
+            "links": [
+              5
+            ],
+            "shape": 3,
+            "slot_index": 1
+          }
+        ],
+        "title": "正向和负向词",
+        "properties": {
+          "Node name for S&R": "DiffusersClipTextEncode"
+        },
+        "widgets_values": [
+          "描绘的风格是写实，画面主要描述一双泥泞的靴子在雨天里，靴子颜色是棕色，泥沙溅在 Boot 的表面，背景是湿漉漉的地板，泥泞的环境，天气是阴沉的雨天，镜头是近景",
+          "错误的眼睛，糟糕的人脸，毁容，糟糕的艺术，变形，多余的肢体，模糊的颜色，模糊，重复，病态，残缺，"
+        ]
+      },
+      {
+        "id": 5,
+        "type": "DiffusersSampler",
+        "pos": [
+          2743.7392753824515,
+          390.7393059000297
+        ],
+        "size": [
+          316.8041926097312,
+          242
+        ],
+        "flags": {
+          "pinned": true
+        },
+        "order": 4,
+        "mode": 0,
+        "inputs": [
+          {
+            "name": "maked_pipeline",
+            "type": "MAKED_PIPELINE",
+            "link": 3
+          },
+          {
+            "name": "positive",
+            "type": "STRINGC",
+            "link": 4
+          },
+          {
+            "name": "negative",
+            "type": "STRINGC",
+            "link": 5
+          }
+        ],
+        "outputs": [
+          {
+            "name": "IMAGE",
+            "type": "IMAGE",
+            "links": [
+              6
+            ],
+            "shape": 3,
+            "slot_index": 0
+          }
+        ],
+        "title": "采样参数设置",
+        "properties": {
+          "Node name for S&R": "DiffusersSampler"
+        },
+        "widgets_values": [
+          1,
+          1024,
+          1024,
+          30,
+          6,
+          8806511,
+          "increment"
+        ]
+      },
+      {
+        "id": 6,
+        "type": "PreviewImage",
+        "pos": [
+          2729,
+          19
+        ],
+        "size": [
+          350.94617306079,
+          275.97281166561345
+        ],
+        "flags": {
+          "pinned": true
+        },
+        "order": 5,
+        "mode": 0,
+        "inputs": [
+          {
+            "name": "images",
+            "type": "IMAGE",
+            "link": 6
+          }
+        ],
+        "title": "生成结果",
+        "properties": {
+          "Node name for S&R": "PreviewImage"
+        }
+      }
+    ],
+    "links": [
+      [
+        1,
+        1,
+        0,
+        3,
+        0,
+        "PIPELINE"
+      ],
+      [
+        2,
+        2,
+        0,
+        3,
+        1,
+        "SCHEDULER"
+      ],
+      [
+        3,
+        3,
+        0,
+        5,
+        0,
+        "MAKED_PIPELINE"
+      ],
+      [
+        4,
+        4,
+        0,
+        5,
+        1,
+        "STRINGC"
+      ],
+      [
+        5,
+        4,
+        1,
+        5,
+        2,
+        "STRINGC"
+      ],
+      [
+        6,
+        5,
+        0,
+        6,
+        0,
+        "IMAGE"
+      ]
+    ],
+    "groups": [
+      {
+        "title": "选择模型文件夹和采样算法",
+        "bounding": [
+          2362,
+          13,
+          345,
+          316
+        ],
+        "color": "#3f789e",
+        "font_size": 24
+      },
+      {
+        "title": "输入提示词",
+        "bounding": [
+          2362,
+          336,
+          347,
+          305
+        ],
+        "color": "#A88",
+        "font_size": 24
+      },
+      {
+        "title": "选择采样参数",
+        "bounding": [
+          2718,
+          310,
+          368,
+          334
+        ],
+        "color": "#8A8",
+        "font_size": 24
+      },
+      {
+        "title": "显示图像",
+        "bounding": [
+          2717,
+          -59,
+          370,
+          364
+        ],
+        "color": "#a1309b",
+        "font_size": 24
+      }
+    ],
+    "config": {},
+    "extra": {
+      "ds": {
+        "scale": 1.3513057093103993,
+        "offset": [
+          -1908.5083324720251,
+          204.54031838798014
+        ]
+      }
+    },
+    "version": 0.4
+  }
